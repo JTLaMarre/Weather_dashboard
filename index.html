@@ -21,18 +21,24 @@
         <div class="row">
             <div class="col-4 mr-auto" id="search_history">
                 <form>
+                    <label for="search">Search for a City: </label>
                     <input type="text" name="search" id="searchcity">
                     <button type="submit" id="search">Search</button>
+                    <div id="search_display"></div>
                 </form>
             </div>
             <div class="col-8 mr-auto text-center">
                 <div id='currentCity'>
-                    <h1 id="CityName">current city</h1>
+                    <h1 id="CityName">Current City Forecast</h1>
+                    <p id= 'currentTemp'></p>
+                    <p id= 'currentHumidity'></p>
+                    <p id= 'currentWindSpeed'></p>
+                    <p id= 'UVindex'></p>
                 </div>
                 <div class="row">
 
                     <div id='fiveDay'class = "col-md-12 text-center">
-                        <h1>Five Day Forecast</h1>
+                        <h1>5-Day Forecast</h1>
                     </div>
                 </div>
             </div>
