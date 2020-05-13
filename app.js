@@ -2,10 +2,18 @@
 
 $(document).ready(function () {
 
+    var city = ""
+    var lat = []
+    var lon = []
     var Cities = []
 
-    function getWeather() {
-        var city = Cities[0]
+    function getWeather(city) {
+        $('#CityName').empty();
+        $('#currentTemp').empty();
+        $('#currentHumidity').empty();
+        $('#currentWindSpeed').empty();
+
+        // var city = Cities[Cities.length-1]
         var QueryUrl = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=63e2ab79c455ba5a3ee05762c641f525'
 
         $.ajax({
@@ -16,40 +24,42 @@ $(document).ready(function () {
             $('#currentTemp').text('Temprature: ' + Math.round((response.main.temp - 273.15) * 1.8 + 32) + ' F')
             $('#currentHumidity').text('Humidity: ' + response.main.humidity + ' %')
             $('#currentWindSpeed').text('WindSpeed: ' + response.wind.speed + ' mph')
-            var lat = response.coord.lat
-            var lon = response.coord.lon
-            
-            function getUV(lat, lon) {
-                var UVUrl = 'http://api.openweathermap.org/data/2.5/uvi/forecast?appid=63e2ab79c455ba5a3ee05762c641f525&lat=' + lat + '&lon=' + lon + '&cnt=5'
-                $.ajax({
-                    url: UVUrl,
-                    method: "GET"
-                }).then(function (response) {
-                    return response[0].value
-                })
-            }
-            $('#UVindex').text("UVindex:" + getUV(lat, lon))
+
+
+            lat.push(response.coord.lat)
+            lon.push(response.coord.lon)
+            console.log('http://api.openweathermap.org/data/2.5/uvi/forecast?appid=63e2ab79c455ba5a3ee05762c641f525&lat=' + lat[lat.length - 1] + '&lon=' + lon[lon.length - 1] + '&cnt=1')
+
+            $.ajax({
+                url: 'http://api.openweathermap.org/data/2.5/uvi/forecast?appid=63e2ab79c455ba5a3ee05762c641f525&lat=' + lat[lat.length - 1] + '&lon=' + lon[lon.length - 1] + '&cnt=1',
+                method: 'Get'
+            }).then(function (response) {
+                $('#UVindex').text("UVindex:" + response[0].value)
+            })
+
         })
     }
 
-    function renderSearch() {
+
+        
+    function renderSearch(city) {
 
         $('#search_display').empty();
+        Cities.push(city);
 
-        for (var i = Cities.length; i > 0; i--) {
+        for (var i = Cities.length; i >= 0; i--) {
 
-            $("<button>").text(Cities[i]).addClass('btn text-muted').appendTo('#search_display')
+            $("<button>").text(Cities[i]).addClass('btn text-muted city').appendTo('#search_display')
             $('<br>').appendTo("#search_display")
         }
     }
     // event to caputure city search
     $("#search").on("click", function (event) {
         event.preventDefault();
-        var city = $('#searchcity').val().trim();
-        Cities.push(city);
+        city = $('#searchcity').val().trim();
 
-        getWeather();
-        renderSearch();
+        getWeather(city);
+        renderSearch(city);
 
     })
     //   wrapper closer
