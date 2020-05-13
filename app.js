@@ -25,6 +25,7 @@ $(document).ready(function () {
             $('#currentHumidity').text('Humidity: ' + response.main.humidity + ' %')
             $('#currentWindSpeed').text('WindSpeed: ' + response.wind.speed + ' mph')
             $('#Icon').attr('src','http://openweathermap.org/img/wn/'+response.weather[0].icon+'@2x.png')
+            call7day(response.coord.lat,response.coord.lon);
 
 
             lat.push(response.coord.lat)
@@ -49,8 +50,34 @@ $(document).ready(function () {
 
         })
     }
+    function call7day(lat,lon){
+$.ajax({
+    url: 'https://api.openweathermap.org/data/2.5/onecall?lat='+lat+'&lon='+lon+'&exclude={part}&appid=63e2ab79c455ba5a3ee05762c641f525',
+    method: "GET"
+}).then(function(response){
+    $('#day1Temp').text( 'Temprature: ' + Math.round((response.daily[1].temp.day - 273.15) * 1.8 + 32) + ' F')
+    $('#day1Humidity').text( 'HUmidity: ' + response.daily[1].humidity + '%')
+    $('#Daily1Icon').attr('src','http://openweathermap.org/img/wn/'+response.daily[1].weather[0].icon+'@2x.png')
 
+    $('#day2Temp').text( 'Temprature: ' + Math.round((response.daily[2].temp.day - 273.15) * 1.8 + 32) + ' F')
+    $('#day2Humidity').text( 'HUmidity: ' + response.daily[2].humidity + '%')
+    $('#Daily2Icon').attr('src','http://openweathermap.org/img/wn/'+response.daily[2].weather[0].icon+'@2x.png')
 
+    $('#day3Temp').text( 'Temprature: ' + Math.round((response.daily[3].temp.day - 273.15) * 1.8 + 32) + ' F')
+    $('#day3Humidity').text( 'HUmidity: ' + response.daily[3].humidity + '%')
+    $('#Daily3Icon').attr('src','http://openweathermap.org/img/wn/'+response.daily[3].weather[0].icon+'@2x.png')
+
+    $('#day4Temp').text( 'Temprature: ' + Math.round((response.daily[4].temp.day - 273.15) * 1.8 + 32) + ' F')
+    $('#day4Humidity').text( 'HUmidity: ' + response.daily[4].humidity + '%')
+    $('#Daily4Icon').attr('src','http://openweathermap.org/img/wn/'+response.daily[4].weather[0].icon+'@2x.png')
+
+    $('#day5Temp').text( 'Temprature: ' + Math.round((response.daily[5].temp.day - 273.15) * 1.8 + 32) + ' F')
+    $('#day5Humidity').text( 'HUmidity: ' + response.daily[5].humidity + '%')
+    $('#Daily5Icon').attr('src','http://openweathermap.org/img/wn/'+response.daily[5].weather[0].icon+'@2x.png')
+
+})
+    }
+    
         // sets up search history buttons
     function renderSearch(city) {
 
