@@ -1,6 +1,21 @@
 README 
 
 
+the following is a weather application when you search a city it retireves the current weather data and displays the following five days of weather data. 
+
+the UVindex displays as red for severe, yellow for moderate, and green dor favorable. 
+
+as more cities are searched they are rendered as buttons which can be clicked to show their current weather as well as the following five days again. 
+
+upon loading the application if it has been used before it will use the local storage to keep and render the search history buttons. 
+
+
+
+
+
+the following were the minimum requirements that were attempted to reach. 
+included in the files is also a scrrenshot of the deployed application. 
+
 minimum requirements 
 
 GIVEN a weather dashboard with form inputs

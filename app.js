@@ -7,7 +7,10 @@ $(document).ready(function () {
     var lon = []
     var Cities = []
 
+
+    // get weather function
     function getWeather(city) {
+        
         $('#CityName').empty();
         $('#currentTemp').empty();
         $('#currentHumidity').empty();
@@ -51,6 +54,7 @@ $(document).ready(function () {
 
         })
     }
+    // function to pull from the 7 days weather info 
     function call7day(lat, lon) {
         $.ajax({
             url: 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude={part}&appid=63e2ab79c455ba5a3ee05762c641f525',
@@ -91,8 +95,9 @@ $(document).ready(function () {
             $('<br>').appendTo("#search_display")
 
         }
-        // addBtnEvent();
+        
     }
+    // function that runs to pull search history from local storage
     function int() {
         Cities = JSON.parse(localStorage.getItem('Searches'))
         if (Cities != null) {
