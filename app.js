@@ -17,7 +17,7 @@ $(document).ready(function () {
         $('#currentWindSpeed').empty();
 
 
-        var QueryUrl = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=63e2ab79c455ba5a3ee05762c641f525'
+        var QueryUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=63e2ab79c455ba5a3ee05762c641f525'
 
         $.ajax({
             url: QueryUrl,
@@ -34,7 +34,7 @@ $(document).ready(function () {
             lat.push(response.coord.lat)
             lon.push(response.coord.lon)
             $.ajax({
-                url: 'http://api.openweathermap.org/data/2.5/uvi/forecast?appid=63e2ab79c455ba5a3ee05762c641f525&lat=' + lat[lat.length - 1] + '&lon=' + lon[lon.length - 1] + '&cnt=1',
+                url: 'https://api.openweathermap.org/data/2.5/uvi/forecast?appid=63e2ab79c455ba5a3ee05762c641f525&lat=' + lat[lat.length - 1] + '&lon=' + lon[lon.length - 1] + '&cnt=1',
                 method: 'Get'
             }).then(function (response) {
                 $('#UVindex').text("UVindex:" + response[0].value)
