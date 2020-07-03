@@ -3,8 +3,17 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  return (
-
+    const [city, setcity] = useState("");
+    const [lat, setlat] = useState("");
+    const [lon, setlon] = useState("");
+    const [Cities, setCities] = useState([])
+    const [temp, settemp] = useState("");
+    const [Humidity, setHumidity] = useState("");
+    const [WindSpeed, setWindSpeed] = useState("");
+    const [IconSrc, setIconSrc] = useState("")
+    
+    
+    return (
        <div className="container">
         <div className="row">
             <div className="col-12 text-center">
