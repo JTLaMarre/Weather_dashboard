@@ -12,6 +12,7 @@ function App() {
     const [WindSpeed, setWindSpeed] = useState("");
     const [IconSrc, setIconSrc] = useState("")
     
+
     
     return (
        <div className="container">
@@ -24,8 +25,8 @@ function App() {
             <div className="col-4 mr-auto" id="search_history">
                 <form>
                     <label for="search">Search for a City: </label>
-                    <input type="text" name="search" id="searchcity"></input>
-                    <button type="submit" id="search" className='btn btn-primary'><i className="fas fa-search"></i></button>
+                    <input type="text" name="search" onChange={event => setcity(event.target.value)}></input>
+                    <button type="submit" className='btn btn-primary'><i className="fas fa-search"></i></button>
                 </form>
                 <form id="search_display">
                     <p>Search History</p>
